@@ -38,7 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
-    await _storage.write(key: 'counter', value: _counter.toString());
+    try {
+      await _storage.write(key: 'counter', value: _counter.toString());
+      print('item saved!');
+    } catch (e) {
+      print('failed to save item');
+    }
   }
 
   void _initStorage() async {
